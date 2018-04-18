@@ -17,6 +17,7 @@ const { Observable } = Rx;
 const articlesDir = path.resolve(__dirname, './svn');
 
 function buildArticle(dirLevel) {
+  log('dirlevel'+ dirLevel, 'blue');
   const filePath = `${dirLevel}/index.md`;
   try {
     fse.openSync(filePath, 'r');
@@ -55,7 +56,8 @@ function buildArticle(dirLevel) {
 }
 
 function articleStream(dirLevel) {
-  return Observable.from(listDirectory(dirLevel)).flatMap(buildArticle);
+  log('HOLA', 'blue');
+  return Observable.from(listDirectory(dirLevel)).flatMap(x => buildArticle(x) );
 }
 
 function getGuideArticleData() {
@@ -65,7 +67,7 @@ function getGuideArticleData() {
       Observable.fromPromise(
         new Promise((resolve, reject) => {
           svn.commands.checkout(
-            'https://github.com/freecodecamp/guides/trunk/src/pages',
+            'https://github.com/erickMunz/guides/trunk/src/pages/',
             articlesDir,
             err => {
               if (err) {

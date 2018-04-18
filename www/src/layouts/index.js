@@ -65,8 +65,8 @@ class TemplateWrapper extends Component {
         />
 
         <InstantSearch
-          apiKey="4318af87aa3ce128708f1153556c6108"
-          appId="QMJYL5WYTI"
+          apiKey="c690254fe0f1b92c7fd6183feb92e0c9"
+          appId="NCCR9CY838"
           indexName="challenges"
           onSearchStateChange={this.onSearchStateChange}
           searchState={searchState}
@@ -75,7 +75,6 @@ class TemplateWrapper extends Component {
             <SearchBar />
           </Header>
           <Index indexName="guides" />
-          <Index indexName="youtube" />
           <Configure hitsPerPage={8} />
           <main>{children()}</main>
           <footer>

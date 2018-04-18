@@ -7,10 +7,10 @@ const { Observable } = require('rxjs');
 // const { getStoryData } = require('./news');
 // const { insertYoutube } = require('./youtube');
 // const { insertChallenges } = require('./challenges');
-// const { insertGuides } = require('./guides');
+ const { insertGuides } = require('./guides');
 
 const dataSources = [
-  // insertGuides,
+   insertGuides,
   // insertChallenges,
   // insertYoutube,
   // disable this until the roll out of news
@@ -32,4 +32,4 @@ function init() {
   );
 }
 
-init();
+exports.init=init();

@@ -7,12 +7,14 @@ const log = logger('update:guides');
 const index = client.initIndex('guides');
 
 const concatContents = (doc, current) => ({
-  ...current,
+  current,
   content: doc.content.concat([current.content])
 });
 
 exports.updateGuides = async function updateGuides() {
-  const newDocs = await getGuideArticleData().toPromise();
+  try{
+    const newDocs = await getGuideArticleData().toPromise();
+    log(newDocs, 'green');
   let hits = [];
   const browseAll = index.browseAll();
   browseAll.on('result', function onResult(content) {
@@ -52,4 +54,9 @@ exports.updateGuides = async function updateGuides() {
   browseAll.on('error', function onError(err) {
     throw err;
   });
+  }
+  catch(error){
+    log(error);
+  }
+  
 };

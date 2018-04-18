@@ -1,13 +1,13 @@
 const path = require('path');
 
-const envPath = path.resolve(__dirname, '../.env');
+const envPath = path.resolve(__dirname, '../sample.env');
 require('dotenv').config({ path: envPath });
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const pmx = require('pmx');
-const { logger } = require('../../utils');
+const { logger } = require('../utils');
 
 const log = logger('server');
 const PORT = process.env.PORT || 7000;
@@ -54,13 +54,10 @@ app.get('*', (req, res) => {
   res.render('noRoute', { route: req.originalUrl });
 });
 
-const noMail = (req, res) => {
-  res.json({ error: 'No mail thank you' }).end();
-};
-
+/*
 app.post('*', noMail);
 app.put('*', noMail);
-
+*/
 app.listen(PORT, () => {
   log(`API server listening on port ${PORT}!`);
 });

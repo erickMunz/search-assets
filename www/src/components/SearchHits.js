@@ -18,7 +18,7 @@ const indexMap = {
   },
   guides: {
     title: 'Guide',
-    url: 'https://guide.freecodecamp.org'
+    url: 'https://localhost:8000'
   },
   youtube: {
     title: 'YouTube',
@@ -28,7 +28,7 @@ const indexMap = {
 
 const buildUrl = (index, result) =>
   `${indexMap[index].url}${'videoId' in result ? result.videoId : result.url}`;
-
+   
 const AllHits = connectAutoComplete(({ hits, currentRefinement }) => {
   const isHitsEmpty = hits.every(index => !index.hits.length);
 
@@ -38,13 +38,14 @@ const AllHits = connectAutoComplete(({ hits, currentRefinement }) => {
         {hits.map(({ hits: results, index }) =>
           results.map(result => (
             <a
-              href={buildUrl(index, result)}
+              href={buildUrl(index, result.baseDoc)}
+              //href={Object.keys(result.baseDoc)}
               key={result.objectID}
               target="_blank"
             >
               <li className="ais-Hits-item dataset-node">
                 <p>
-                  <strong>{indexMap[index].title}:</strong>
+                   Tu búsqueda <strong>{result.baseDoc.title}</strong>
                   &nbsp;
                   <Highlight attribute="title" hit={result} />
                 </p>

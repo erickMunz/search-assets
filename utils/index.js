@@ -83,7 +83,7 @@ exports.chunkDocument = function chunkDocument(doc, pickFields, chunkField) {
   if (!chunks) {
     return [doc];
   }
-  return chunks.map(chunk => ({ ...baseDoc, [chunkField]: chunk }));
+  return chunks.map(chunk => ({baseDoc, [chunkField]: chunk }));
 };
 
 function stripURLs(str) {
